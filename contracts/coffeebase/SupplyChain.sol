@@ -159,7 +159,7 @@ contract SupplyChain {
     items[_upc] = Item({
       sku: sku,
       upc: _upc,
-      ownerID: _originFarmerID,
+      ownerID: msg.sender,
       originFarmerID: _originFarmerID,
       originFarmName: _originFarmName,
       originFarmInformation: _originFarmInformation,
@@ -189,9 +189,11 @@ contract SupplyChain {
   
   {
     // Update the appropriate fields
+    items[_upc].itemState = State.Processed;
+    items[_upc].ownerID = msg.sender;
     
     // Emit the appropriate event
-    
+    emit Processed(_upc);
   }
 
   // Define a function 'packItem' that allows a farmer to mark an item 'Packed'
