@@ -156,11 +156,29 @@ contract SupplyChain {
   function harvestItem(uint _upc, address _originFarmerID, string _originFarmName, string _originFarmInformation, string  _originFarmLatitude, string  _originFarmLongitude, string  _productNotes) public 
   {
     // Add the new item as part of Harvest
+    items[_upc] = Item({
+      sku: sku,
+      upc: _upc,
+      ownerID: _originFarmerID,
+      originFarmerID: _originFarmerID,
+      originFarmName: _originFarmName,
+      originFarmInformation: _originFarmInformation,
+      originFarmLatitude: _originFarmLatitude,
+      originFarmLongitude: _originFarmLongitude,
+      productID: sku + _upc,
+      productNotes: _productNotes,
+      productPrice: 0,
+      itemState: State.Harvested,
+      distributorID: 0,
+      retailerID: 0,
+      consumerID: 0
+    });    
     
     // Increment sku
     sku = sku + 1;
+
     // Emit the appropriate event
-    
+    emit Harvested(_upc);
   }
 
   // Define a function 'processtItem' that allows a farmer to mark an item 'Processed'
@@ -275,8 +293,15 @@ contract SupplyChain {
   string  originFarmLongitude
   ) 
   {
-  // Assign values to the 8 parameters
-  
+    // Assign values to the 8 parameters
+    itemSKU = items[_upc].sku;
+    itemUPC = items[_upc].upc;
+    ownerID =  items[_upc].ownerID;
+    originFarmerID = items[_upc].originFarmerID;
+    originFarmName = items[_upc].originFarmName;
+    originFarmInformation = items[_upc].originFarmInformation;
+    originFarmLatitude = items[_upc].originFarmLatitude;
+    originFarmLongitude = items[_upc].originFarmLongitude;
     
   return 
   (
@@ -306,7 +331,15 @@ contract SupplyChain {
   ) 
   {
     // Assign values to the 9 parameters
-  
+    itemSKU = items[_upc].sku;
+    itemUPC = items[_upc].upc;
+    productID = items[_upc].productID;
+    productNotes = items[_upc].productNotes;
+    productPrice = items[_upc].productPrice;
+    itemState =  uint(items[_upc].itemState);
+    distributorID = items[_upc].distributorID; 
+    retailerID = items[_upc].retailerID;
+    consumerID = items[_upc].consumerID;
     
   return 
   (
