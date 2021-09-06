@@ -253,15 +253,18 @@ contract SupplyChain {
 
   // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
   // Use the above modifers to check if the item is sold
-  function shipItem(uint _upc) public 
+  function shipItem(uint _upc) public sold(_upc) verifyCaller(items[_upc].distributorID)
     // Call modifier to check if upc has passed previous supply chain stage
     
     // Call modifier to verify caller of this function
     
     {
     // Update the appropriate fields
+    items[_upc].ownerID = msg.sender;
+    items[_upc].itemState = State.Shipped;         
     
     // Emit the appropriate event
+    emit Shipped(_upc);
     
   }
 
