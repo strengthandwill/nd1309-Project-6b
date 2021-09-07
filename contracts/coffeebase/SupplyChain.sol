@@ -169,9 +169,9 @@ contract SupplyChain {
       productNotes: _productNotes,
       productPrice: 0,
       itemState: State.Harvested,
-      distributorID: 0,
-      retailerID: 0,
-      consumerID: 0
+      distributorID: address(0),
+      retailerID: address(0),
+      consumerID: address(0)
     });    
     
     // Increment sku
