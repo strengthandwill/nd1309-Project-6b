@@ -41,6 +41,7 @@ App = {
         App.acDistributorID = $("#acDistributorID").val();
         App.acRetailerID = $("#acRetailerID").val();
         App.acConsumerID = $("#acConsumerID").val();
+        App.newOwner = $("#newOwner").val();
 
         console.log(
             App.sku,
@@ -55,7 +56,12 @@ App = {
             App.productPrice, 
             App.distributorID, 
             App.retailerID, 
-            App.consumerID
+            App.consumerID,
+            App.acFarmerID,
+            App.acDistributorID,
+            App.acRetailerID,
+            App.acConsumerID,
+            App.newOwner
         );
     },
 
@@ -83,7 +89,7 @@ App = {
 
         App.getMetaskAccountID();
 
-        return App.initSupplyChain();
+        return App.initFairTradeCoffee();
     },
 
     getMetaskAccountID: function () {
@@ -100,16 +106,16 @@ App = {
         })
     },
 
-    initSupplyChain: function () {
+    initFairTradeCoffee: function () {
         /// Source the truffle compiled smart contracts
-        var jsonSupplyChain='../../build/contracts/SupplyChain.json';
+        var jsonFairTradeCoffee='../../build/contracts/FairTradeCoffee.json';
         
         /// JSONfy the smart contracts
-        $.getJSON(jsonSupplyChain, function(data) {
+        $.getJSON(jsonFairTradeCoffee, function(data) {
             console.log('data',data);
-            var SupplyChainArtifact = data;
-            App.contracts.SupplyChain = TruffleContract(SupplyChainArtifact);
-            App.contracts.SupplyChain.setProvider(App.web3Provider);
+            var FairTradeCoffeeArtifact = data;
+            App.contracts.FairTradeCoffee = TruffleContract(FairTradeCoffeeArtifact);
+            App.contracts.FairTradeCoffee.setProvider(App.web3Provider);
             
             App.fetchItemBufferOne();
             App.fetchItemBufferTwo();
@@ -188,7 +194,12 @@ App = {
             case 18:
                 return await App.renounceConsumerID(event);
                 break; 
-            
+            case 19:
+                return await App.transferOwnership(event);
+                break;                
+            case 20:
+                return await App.renounceOwnership(event);
+                break;             
             }
     },
 
@@ -196,7 +207,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.harvestItem(
                 App.upc, 
                 App.metamaskAccountID, 
@@ -219,7 +230,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.processItem(App.upc, {from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -233,7 +244,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));        
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             console.log('packItem');
             return instance.packItem(App.upc, {from: App.metamaskAccountID});
         }).then(function(result) {
@@ -248,7 +259,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             const productPrice = web3.toWei(App.productPrice, "ether");
             return instance.sellItem(App.upc, App.productPrice, {from: App.metamaskAccountID});
         }).then(function(result) {
@@ -263,7 +274,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             const walletValue = web3.toWei(App.productPrice, "ether");
             return instance.buyItem(App.upc, {from: App.metamaskAccountID, value: walletValue});
         }).then(function(result) {
@@ -278,7 +289,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.shipItem(App.upc, {from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -292,7 +303,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.receiveItem(App.upc, {from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -306,7 +317,7 @@ App = {
         event.preventDefault();
         var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.purchaseItem(App.upc, {from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -322,7 +333,7 @@ App = {
         App.upc = $('#upc').val();
         console.log('upc',App.upc);
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
           return instance.fetchItemBufferOne(App.upc);
         }).then(function(result) {
           $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -336,7 +347,7 @@ App = {
     ///    event.preventDefault();
     ///    var processId = parseInt($(event.target).data('id'));
                         
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
           return instance.fetchItemBufferTwo.call(App.upc);
         }).then(function(result) {
           $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -347,16 +358,16 @@ App = {
     },
 
     fetchEvents: function () {
-        if (typeof App.contracts.SupplyChain.currentProvider.sendAsync !== "function") {
-            App.contracts.SupplyChain.currentProvider.sendAsync = function () {
-                return App.contracts.SupplyChain.currentProvider.send.apply(
-                App.contracts.SupplyChain.currentProvider,
+        if (typeof App.contracts.FairTradeCoffee.currentProvider.sendAsync !== "function") {
+            App.contracts.FairTradeCoffee.currentProvider.sendAsync = function () {
+                return App.contracts.FairTradeCoffee.currentProvider.send.apply(
+                App.contracts.FairTradeCoffee.currentProvider,
                     arguments
               );
             };
         }
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
         var events = instance.allEvents(function(err, log){
           if (!err)
             $("#ftc-events").append('<li>' + log.event + ' - ' + log.transactionHash + '</li>');
@@ -375,7 +386,7 @@ App = {
         console.log('acFarmerID',App.acFarmerID);
 
         if (App.acFarmerID != null && App.acFarmerID != '') {
-            App.contracts.SupplyChain.deployed().then(function(instance) {
+            App.contracts.FairTradeCoffee.deployed().then(function(instance) {
                 return instance.addFarmer(App.acFarmerID, {from: App.metamaskAccountID});
             }).then(function(result) {
                 $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -390,7 +401,7 @@ App = {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
         
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.renounceFarmer({from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -408,7 +419,7 @@ App = {
         console.log('acDistributorID',App.acDistributorID);        
             
         if (App.acDistributorID != null && App.acDistributorID != '') {
-            App.contracts.SupplyChain.deployed().then(function(instance) {            
+            App.contracts.FairTradeCoffee.deployed().then(function(instance) {            
                 return instance.addDistributor(App.acDistributorID, {from: App.metamaskAccountID});
             }).then(function(result) {
                 $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -426,7 +437,7 @@ App = {
         console.log("------------ Hello");
         console.log(App.metamaskAccountID);
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.renounceDistributor({from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -444,7 +455,7 @@ App = {
         console.log('acRetailerID',App.acRetailerID);
 
         if (App.acConsumerID != null && App.acConsumerID != '') {
-            App.contracts.SupplyChain.deployed().then(function(instance) {                
+            App.contracts.FairTradeCoffee.deployed().then(function(instance) {                
                 return instance.addRetailer(App.acRetailerID, {from: App.metamaskAccountID});
             }).then(function(result) {
                 $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -459,7 +470,7 @@ App = {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.renounceRetailer({from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -477,7 +488,7 @@ App = {
         console.log('acConsumerID',App.acConsumerID);
 
         if (App.acRetailerID != null && App.acRetailerID != '') {
-            App.contracts.SupplyChain.deployed().then(function(instance) {                
+            App.contracts.FairTradeCoffee.deployed().then(function(instance) {                
                 return instance.addConsumer(App.acConsumerID, {from: App.metamaskAccountID});
             }).then(function(result) {
                 $("#ftc-item").text(JSON.stringify(result, undefined, 2));
@@ -492,11 +503,44 @@ App = {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
-        App.contracts.SupplyChain.deployed().then(function(instance) {
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.renounceConsumer({from: App.metamaskAccountID});
         }).then(function(result) {
             $("#ftc-item").text(JSON.stringify(result, undefined, 2));
             console.log('RenounceConsumer', result);          
+        }).catch(function(err) {
+            console.log(err.message);
+        });        
+    },
+
+    transferOwnership: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.newOwner = $('#newOwner').val(); 
+        console.log('newOwner',App.newOwner);
+
+        if (App.newOwner != null && App.newOwner != '') {
+            App.contracts.FairTradeCoffee.deployed().then(function(instance) {                
+                return instance.transferOwnership(App.newOwner, {from: App.metamaskAccountID});
+            }).then(function(result) {
+                $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+                console.log('TransferOwnership', result);          
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },  
+    
+    renounceOwnership: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.contracts.FairTradeCoffee.deployed().then(function(instance) {
+            return instance.renounceOwnership({from: App.metamaskAccountID});
+        }).then(function(result) {
+            $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+            console.log('RenounceOwnership', result);          
         }).catch(function(err) {
             console.log(err.message);
         });        
