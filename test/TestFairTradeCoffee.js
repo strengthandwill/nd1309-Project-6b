@@ -36,7 +36,7 @@ contract('FairTradeCoffee', function(accounts) {
             const ftc = await FairTradeCoffee.deployed();
 
             const resultBeforeRenouncing = await ftc.isOwner({from: accounts[5]});
-            const { logs } = await ftc.renounceOwnership({from: accounts[5]});
+            const { logs } = await ftc.renounceOwnership({from: accounts[5]});            
             const resultAfterRenouncing = await ftc.isOwner({from: accounts[5]});        
 
             // Verify the result set

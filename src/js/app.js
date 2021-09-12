@@ -171,28 +171,28 @@ App = {
                 return await App.fetchItemBufferTwo(event);
                 break;
             case 11:
-                return await App.addFarmerID(event);
+                return await App.addFarmer(event);
                 break;                
             case 12:
-                return await App.renounceFarmerID(event);
+                return await App.renounceFarmer(event);
                 break;                         
             case 13:
-                return await App.addDistributorID(event);
+                return await App.addDistributor(event);
                 break;                
             case 14:
-                return await App.renounceDistributorID(event);
+                return await App.renounceDistributor(event);
                 break;                                                
             case 15:
-                return await App.addRetailerID(event);
+                return await App.addRetailer(event);
                 break;                
             case 16:
-                return await App.renounceRetailerID(event);
+                return await App.renounceRetailer(event);
                 break;                                                                                                 
             case 17:
-                return await App.addConsumerID(event);
+                return await App.addConsumer(event);
                 break;                
             case 18:
-                return await App.renounceConsumerID(event);
+                return await App.renounceConsumer(event);
                 break; 
             case 19:
                 return await App.transferOwnership(event);
@@ -378,7 +378,7 @@ App = {
         
     },
 
-    addFarmerID: function () {
+    addFarmer: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
@@ -397,7 +397,7 @@ App = {
         }
     },
 
-    renounceFarmerID: function () {
+    renounceFarmer: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
         
@@ -411,7 +411,7 @@ App = {
         });        
     },
 
-    addDistributorID: function () {
+    addDistributor: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
         
@@ -430,7 +430,7 @@ App = {
         }
     },
 
-    renounceDistributorID: function () {
+    renounceDistributor: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
@@ -447,7 +447,7 @@ App = {
         });        
     },
 
-    addRetailerID: function () {
+    addRetailer: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
@@ -466,7 +466,7 @@ App = {
         }
     },
 
-    renounceRetailerID: function () {
+    renounceRetailer: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
@@ -480,7 +480,7 @@ App = {
         });        
     },
 
-    addConsumerID: function () {
+    addConsumer: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
@@ -499,7 +499,7 @@ App = {
         }
     },  
     
-    renounceConsumerID: function () {
+    renounceConsumer: function () {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
