@@ -1,0 +1,239 @@
+{
+  "contractName": "FairTradeCoffee",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "isOwner",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "name": "oldOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "TransferOwnership",
+      "type": "event"
+    }
+  ],
+  "bytecode": "0x6080604052336000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c60405160405180910390a36103de806100cf6000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063715018a6146100675780638da5cb5b1461007e5780638f32d59b146100d5578063f2fde38b14610104575b600080fd5b34801561007357600080fd5b5061007c610147565b005b34801561008a57600080fd5b50610093610219565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e157600080fd5b506100ea610242565b604051808215151515815260200191505060405180910390f35b34801561011057600080fd5b50610145600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b61014f610242565b151561015a57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c60405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614905090565b6102a1610242565b15156102ac57600080fd5b6102b5816102b8565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156102f457600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c60405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820f39ed3a935894fa20fadb3f2e6174c219a00cc45eed0308996e7ebb326468c460029",
+  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063715018a6146100675780638da5cb5b1461007e5780638f32d59b146100d5578063f2fde38b14610104575b600080fd5b34801561007357600080fd5b5061007c610147565b005b34801561008a57600080fd5b50610093610219565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b3480156100e157600080fd5b506100ea610242565b604051808215151515815260200191505060405180910390f35b34801561011057600080fd5b50610145600480360381019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610299565b005b61014f610242565b151561015a57600080fd5b600073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c60405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614905090565b6102a1610242565b15156102ac57600080fd5b6102b5816102b8565b50565b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff16141515156102f457600080fd5b8073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f5c486528ec3e3f0ea91181cff8116f02bfa350e03b8b6f12e00765adbb5af85c60405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550505600a165627a7a72305820f39ed3a935894fa20fadb3f2e6174c219a00cc45eed0308996e7ebb326468c460029",
+  "sourceMap": "51:39:0:-;;;313:10:1;301:9;;:22;;;;;;;;;;;;;;;;;;368:9;;;;;;;;;;;338:40;;364:1;338:40;;;;;;;;;;;;51:39:0;;;;;;",
+  "deployedSourceMap": "51:39:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;850:140:1;;8:9:-1;5:2;;;30:1;27;20:12;5:2;850:140:1;;;;;;432:80;;8:9:-1;5:2;;;30:1;27;20:12;5:2;432:80:1;;;;;;;;;;;;;;;;;;;;;;;;;;;704:93;;8:9:-1;5:2;;;30:1;27;20:12;5:2;704:93:1;;;;;;;;;;;;;;;;;;;;;;;;;;;1051:107;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1051:107:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;850:140;604:9;:7;:9::i;:::-;596:18;;;;;;;;948:1;911:40;;929:9;;;;;;;;;;;911:40;;;;;;;;;;;;981:1;961:9;;:22;;;;;;;;;;;;;;;;;;850:140::o;432:80::-;470:7;496:9;;;;;;;;;;;489:16;;432:80;:::o;704:93::-;744:4;781:9;;;;;;;;;;;767:23;;:10;:23;;;760:30;;704:93;:::o;1051:107::-;604:9;:7;:9::i;:::-;596:18;;;;;;;;1123:28;1142:8;1123:18;:28::i;:::-;1051:107;:::o;1222:186::-;1315:1;1295:22;;:8;:22;;;;1287:31;;;;;;;;1362:8;1333:38;;1351:9;;;;;;;;;;;1333:38;;;;;;;;;;;;1393:8;1381:9;;:20;;;;;;;;;;;;;;;;;;1222:186;:::o",
+  "source": "pragma solidity ^0.4.24;\n\nimport \"./Ownable.sol\";\n\ncontract FairTradeCoffee is Ownable { }",
+  "sourcePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/module2/project-6/contracts/coffeecore/FairTradeCoffee.sol",
+  "ast": {
+    "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/module2/project-6/contracts/coffeecore/FairTradeCoffee.sol",
+    "exportedSymbols": {
+      "FairTradeCoffee": [
+        5
+      ]
+    },
+    "id": 6,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/module2/project-6/contracts/coffeecore/Ownable.sol",
+        "file": "./Ownable.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 6,
+        "sourceUnit": 115,
+        "src": "26:23:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 114,
+              "src": "79:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$114",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 4,
+            "nodeType": "InheritanceSpecifier",
+            "src": "79:7:0"
+          }
+        ],
+        "contractDependencies": [
+          114
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5,
+        "linearizedBaseContracts": [
+          5,
+          114
+        ],
+        "name": "FairTradeCoffee",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 6,
+        "src": "51:39:0"
+      }
+    ],
+    "src": "0:90:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/module2/project-6/contracts/coffeecore/FairTradeCoffee.sol",
+    "exportedSymbols": {
+      "FairTradeCoffee": [
+        5
+      ]
+    },
+    "id": 6,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "absolutePath": "/Users/strengthandwill/workspace/blockchain-nanodegree/module2/project-6/contracts/coffeecore/Ownable.sol",
+        "file": "./Ownable.sol",
+        "id": 2,
+        "nodeType": "ImportDirective",
+        "scope": 6,
+        "sourceUnit": 115,
+        "src": "26:23:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 3,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 114,
+              "src": "79:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$114",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 4,
+            "nodeType": "InheritanceSpecifier",
+            "src": "79:7:0"
+          }
+        ],
+        "contractDependencies": [
+          114
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 5,
+        "linearizedBaseContracts": [
+          5,
+          114
+        ],
+        "name": "FairTradeCoffee",
+        "nodeType": "ContractDefinition",
+        "nodes": [],
+        "scope": 6,
+        "src": "51:39:0"
+      }
+    ],
+    "src": "0:90:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0xf57703af48f744da1620524a773b809b21c46c46",
+      "transactionHash": "0xa88c9c237b4a99d596857dbfb3470fdf0941f3358c2c77104474b6fd66730d00"
+    }
+  },
+  "schemaVersion": "2.0.1",
+  "updatedAt": "2021-09-12T10:21:33.917Z"
+}
