@@ -37,6 +37,10 @@ App = {
         App.distributorID = $("#distributorID").val();
         App.retailerID = $("#retailerID").val();
         App.consumerID = $("#consumerID").val();
+        App.acFarmerID = $("#acFarmerID").val();
+        App.acDistributorID = $("#acDistributorID").val();
+        App.acRetailerID = $("#acRetailerID").val();
+        App.acConsumerID = $("#acConsumerID").val();
 
         console.log(
             App.sku,
@@ -160,6 +164,31 @@ App = {
             case 10:
                 return await App.fetchItemBufferTwo(event);
                 break;
+            case 11:
+                return await App.addFarmerID(event);
+                break;                
+            case 12:
+                return await App.renounceFarmerID(event);
+                break;                         
+            case 13:
+                return await App.addDistributorID(event);
+                break;                
+            case 14:
+                return await App.renounceDistributorID(event);
+                break;                                                
+            case 15:
+                return await App.addRetailerID(event);
+                break;                
+            case 16:
+                return await App.renounceRetailerID(event);
+                break;                                                                                                 
+            case 17:
+                return await App.addConsumerID(event);
+                break;                
+            case 18:
+                return await App.renounceConsumerID(event);
+                break; 
+            
             }
     },
 
@@ -336,7 +365,142 @@ App = {
           console.log(err.message);
         });
         
-    }
+    },
+
+    addFarmerID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.acFarmerID = $('#acFarmerID').val();
+        console.log('acFarmerID',App.acFarmerID);
+
+        if (App.acFarmerID != null && App.acFarmerID != '') {
+            App.contracts.SupplyChain.deployed().then(function(instance) {
+                return instance.addFarmer(App.acFarmerID, {from: App.metamaskAccountID});
+            }).then(function(result) {
+                $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+                console.log('addFarmer', result);          
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },
+
+    renounceFarmerID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+        
+        App.contracts.SupplyChain.deployed().then(function(instance) {
+            return instance.renounceFarmer({from: App.metamaskAccountID});
+        }).then(function(result) {
+            $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+            console.log('renounceFarmer', result);          
+        }).catch(function(err) {
+            console.log(err.message);
+        });        
+    },
+
+    addDistributorID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+        
+        App.acDistributorID = $('#acDistributorID').val();
+        console.log('acDistributorID',App.acDistributorID);        
+            
+        if (App.acDistributorID != null && App.acDistributorID != '') {
+            App.contracts.SupplyChain.deployed().then(function(instance) {            
+                return instance.addDistributor(App.acDistributorID, {from: App.metamaskAccountID});
+            }).then(function(result) {
+                $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+                console.log('addDistributor', result);          
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },
+
+    renounceDistributorID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        console.log("------------ Hello");
+        console.log(App.metamaskAccountID);
+
+        App.contracts.SupplyChain.deployed().then(function(instance) {
+            return instance.renounceDistributor({from: App.metamaskAccountID});
+        }).then(function(result) {
+            $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+            console.log('RenounceDistributor', result);          
+        }).catch(function(err) {
+            console.log(err.message);
+        });        
+    },
+
+    addRetailerID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.acRetailerID = $('#acRetailerID').val();
+        console.log('acRetailerID',App.acRetailerID);
+
+        if (App.acConsumerID != null && App.acConsumerID != '') {
+            App.contracts.SupplyChain.deployed().then(function(instance) {                
+                return instance.addRetailer(App.acRetailerID, {from: App.metamaskAccountID});
+            }).then(function(result) {
+                $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+                console.log('AddRetailer', result);          
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },
+
+    renounceRetailerID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.contracts.SupplyChain.deployed().then(function(instance) {
+            return instance.renounceRetailer({from: App.metamaskAccountID});
+        }).then(function(result) {
+            $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+            console.log('RenounceRetailer', result);          
+        }).catch(function(err) {
+            console.log(err.message);
+        });        
+    },
+
+    addConsumerID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.acConsumerID = $('#acConsumerID').val(); 
+        console.log('acConsumerID',App.acConsumerID);
+
+        if (App.acRetailerID != null && App.acRetailerID != '') {
+            App.contracts.SupplyChain.deployed().then(function(instance) {                
+                return instance.addConsumer(App.acConsumerID, {from: App.metamaskAccountID});
+            }).then(function(result) {
+                $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+                console.log('AddConsumer', result);          
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }
+    },  
+    
+    renounceConsumerID: function () {
+        ///   event.preventDefault();
+        ///    var processId = parseInt($(event.target).data('id'));
+
+        App.contracts.SupplyChain.deployed().then(function(instance) {
+            return instance.renounceConsumer({from: App.metamaskAccountID});
+        }).then(function(result) {
+            $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+            console.log('RenounceConsumer', result);          
+        }).catch(function(err) {
+            console.log(err.message);
+        });        
+    },
 };
 
 $(function () {
