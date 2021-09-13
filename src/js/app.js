@@ -131,7 +131,7 @@ App = {
     },
 
     handleButtonClick: async function(event) {
-        event.preventDefault();
+        // event.preventDefault();
 
         App.getMetaskAccountID();
         App.readForm();
@@ -199,7 +199,10 @@ App = {
                 break;                
             case 20:
                 return await App.renounceOwnership(event);
-                break;             
+                break;    
+            case 21:
+                return await App.upload(event);
+                break;                             
             }
     },
 
@@ -545,6 +548,8 @@ App = {
             console.log(err.message);
         });        
     },
+
+    upload: function() {  }
 };
 
 $(function () {
