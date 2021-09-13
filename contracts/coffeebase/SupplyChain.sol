@@ -56,6 +56,7 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
     address distributorID;  // Metamask-Ethereum address of the Distributor
     address retailerID; // Metamask-Ethereum address of the Retailer
     address consumerID; // Metamask-Ethereum address of the Consumer
+    string  productImage; // Product Image    
   }
 
   // Define 8 events with the same 8 state values and accept 'upc' as input argument
@@ -67,6 +68,7 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
   event Shipped(uint upc);
   event Received(uint upc);
   event Purchased(uint upc);
+  event Uploaded(uint upc);
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
   modifier onlyOwner() {
@@ -174,6 +176,7 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
       productID: sku + _upc,
       productNotes: _productNotes,
       productPrice: 0,
+      productImage: '',
       itemState: State.Harvested,
       distributorID: address(0),
       retailerID: address(0),
@@ -309,6 +312,14 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
     emit Purchased(_upc);    
   }
 
+  // Define a function 'uploadProductImage' that allows the farmer to upload product image to an item
+  function uploadProductImage(uint _upc, string _productImage) public onlyFarmer {
+    items[_upc].productImage = _productImage;
+
+    // Emit the appropriate event
+    emit Uploaded(_upc);
+  }
+
   // Define a function 'fetchItemBufferOne' that fetches the data
   function fetchItemBufferOne(uint _upc) public view returns 
   (
@@ -356,7 +367,8 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
   uint    itemState,
   address distributorID,
   address retailerID,
-  address consumerID
+  address consumerID,
+  string  productImage  
   ) 
   {
     // Assign values to the 9 parameters
@@ -364,11 +376,12 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
     itemUPC = items[_upc].upc;
     productID = items[_upc].productID;
     productNotes = items[_upc].productNotes;
-    productPrice = items[_upc].productPrice;
+    productPrice = items[_upc].productPrice;    
     itemState =  uint(items[_upc].itemState);
     distributorID = items[_upc].distributorID; 
     retailerID = items[_upc].retailerID;
     consumerID = items[_upc].consumerID;
+    productImage = items[_upc].productImage;    
     
   return 
   (
@@ -380,7 +393,8 @@ contract SupplyChain is FarmerRole, DistributorRole, RetailerRole, ConsumerRole 
   itemState,
   distributorID,
   retailerID,
-  consumerID
+  consumerID,
+  productImage  
   );
   }
 }

@@ -1,17 +1,18 @@
 const express = require('express');
 const app = express();
-require('dotenv').config();
 
 const ipfsClient = require('ipfs-http-client');
 const fileUpload = require("express-fileupload");
 
+require('dotenv').config();
+
 app.use(fileUpload());
 
-app.post('/upload', async (req, res) => {
-    const projectId = process.env.PROJECTI_ID;
-    const projectSecret = process.env.PROJECTI_SECRET;
-    console.log(projectId);
-    console.log(projectSecret);
+app.post('/upload', async (req, res) => {    
+    const projectId = process.env.PROJECT_ID;
+    const projectSecret = process.env.PROJECT_SECRET;
+    console.log(process.env.PROJECTI_ID);
+    console.log(process.env.PROJECTI_SECRET);
 
     const auth = 'Basic ' + Buffer.from(projectId + ':' + projectSecret).toString('base64')
 
@@ -43,5 +44,5 @@ module.exports = {
             1: app,
         },
     },
-    port: 3000,
+    port: 3000
 };
