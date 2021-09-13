@@ -1,8 +1,8 @@
 require('dotenv').config();
 const HDWalletProvider = require('truffle-hdwallet-provider');
 
-const infuraKey = process.env.INFURA_KEY || "b45d1acd22264f47ae188fced8e20ef1";
-const mnemonic = process.env.MNEMONIC || "spirit supply whale amount human item harsh scare congress discover talent hamster";
+const infuraKey = process.env.INFURA_KEY;
+const mnemonic = process.env.MNEMONIC;
 
 module.exports = {  
   networks: {
