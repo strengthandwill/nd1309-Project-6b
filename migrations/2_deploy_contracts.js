@@ -7,6 +7,7 @@ var SupplyChain = artifacts.require("./SupplyChain.sol");
 var FairTradeCoffee = artifacts.require("./FairTradeCoffee.sol");
 
 module.exports = function(deployer) {
+  require('dotenv').config();
   deployer.deploy(FarmerRole);
   deployer.deploy(DistributorRole);
   deployer.deploy(RetailerRole);
