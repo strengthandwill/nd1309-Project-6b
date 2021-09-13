@@ -34,6 +34,7 @@ App = {
         App.originFarmLongitude = $("#originFarmLongitude").val();
         App.productNotes = $("#productNotes").val();
         App.productPrice = $("#productPrice").val();
+        App.productImage = $("#productImage").val();
         App.distributorID = $("#distributorID").val();
         App.retailerID = $("#retailerID").val();
         App.consumerID = $("#consumerID").val();
@@ -131,8 +132,6 @@ App = {
     },
 
     handleButtonClick: async function(event) {
-        // event.preventDefault();
-
         App.getMetaskAccountID();
         App.readForm();
 
@@ -203,7 +202,10 @@ App = {
             case 21:
                 return await App.upload(event);
                 break;                             
-            }
+            case 22:
+                return await App.read(event);
+                break;                  
+        }
     },
 
     harvestItem: function(event) {
@@ -437,9 +439,6 @@ App = {
         ///   event.preventDefault();
         ///    var processId = parseInt($(event.target).data('id'));
 
-        console.log("------------ Hello");
-        console.log(App.metamaskAccountID);
-
         App.contracts.FairTradeCoffee.deployed().then(function(instance) {
             return instance.renounceDistributor({from: App.metamaskAccountID});
         }).then(function(result) {
@@ -549,7 +548,38 @@ App = {
         });        
     },
 
-    upload: function() {  }
+    upload: async () => { 
+        let formData = new FormData(); 
+        formData.append("image", image.files[0]);
+        const response = await fetch('/upload', {
+          method: "POST", 
+          body: formData
+        }); 
+
+        if (response.status === 200) {
+            let data = await response.text();
+            App.productImage = data;
+            $("#productImage").val(App.productImage);
+
+            App.upc = $('#upc').val();
+            console.log('upc',App.upc);
+
+            App.contracts.FairTradeCoffee.deployed().then(function(instance) {
+                return instance.uploadProductImage(App.upc, App.productImage, {from: App.metamaskAccountID});
+            }).then(function(result) {
+                $("#ftc-item").text(JSON.stringify(result, undefined, 2));
+                console.log('upload', result);          
+            }).catch(function(err) {
+                console.log(err.message);
+            });
+        }                
+     },
+
+     read: function() {
+        App.productImage = $('#productImage').val();
+        console.log('upc',App.productImage);        
+         $("#showImage").html(`<img src='https://gateway.ipfs.io/ipfs/${App.productImage}' />`);
+     }
 };
 
 $(function () {
