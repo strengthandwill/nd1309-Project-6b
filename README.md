@@ -1,3 +1,31 @@
+# Write Up
+* Project write-up - UML
+    * Activity
+        * ![](/images/Activity.drawio.png)
+    * Sequence
+        * ![](/images/Sequence.drawio.png)
+    * State
+        * ![](/images/State.drawio.png)
+    * Classes (Data Model)
+        * ![](/images/Class.drawio.png)
+* Project write-up - Libraries
+    * dotenv: To store secrets and api keys
+    * express, express-fileupload: To upload product image
+    * ipfs-http-client: To upload file to IPFS via Infura
+    * truffle-hdwallet-provider: To use Ethereum public networks
+* Project write-up - IPFS
+    * IPFS is used as the file storage.
+    * When "Upload" button is clicked, DApp uploads the image via Infura and IPFS return a hash. Then the hash is also stored in the block as `productImage`.
+    * When "Read" button is clicked, DApp uses the hash to retreive the image from IPFS.
+* General Write Up
+    * See the following section "Deploy smart contract on a public test network (Rinkeby)"
+# Write smart contracts with functions
+Refer to source code
+
+# Test smart contract code coverage
+![](/images/Tests.png)
+
+# Deploy smart contract on a public test network (Rinkeby)
 * Contract Creation
     * FarmerRole: [0x19bfcfdaf429953da7ea06d7d71b0ff7ee076652b1a9463d28a914fc3f0dc0bb](https://rinkeby.etherscan.io/tx/0x19bfcfdaf429953da7ea06d7d71b0ff7ee076652b1a9463d28a914fc3f0dc0bb)
         * Contract: [0xb5f2f90f040c631a9d1ada5d01b6812eb74e4581](https://rinkeby.etherscan.io/address/0xb5f2f90f040c631a9d1ada5d01b6812eb74e4581)
@@ -29,9 +57,15 @@
         *   Image: [QmdNqizUYxfoikGeFErtcJKJAJeMDKJ6dLZ5ngcZvxdTYq](https://gateway.ipfs.io/ipfs/QmdNqizUYxfoikGeFErtcJKJAJeMDKJ6dLZ5ngcZvxdTYq)
 * Renounce Roles
     * FarmerRemoved: [0xcf523d35f796be290d110d3c62e59ba692f7c452854d0f10dd6684717560bce4](https://rinkeby.etherscan.io/tx/0xcf523d35f796be290d110d3c62e59ba692f7c452854d0f10dd6684717560bce4)
-    * DistributorRemoved: [0xbc3d948e3858a87bfb35666f3bb7791e5b139f3f852629f7b8f82a0a4cc84314](https://rinkeby.etherscan.io/tx/0xbc3d948e3858a87bfb35666f3bb7791e5b139f3f852629f7b8f82a0a4cc84314)
+    * DistributorRemoved: [0xbc3d948e3858a87bfb35666f3bb7791e5b139f3f852629f7b8f82a0a4cc84314]( https://rinkeby.etherscan.io/tx/0xbc3d948e3858a87bfb35666f3bb7791e5b139f3f852629f7b8f82a0a4cc84314)
     * RetailerRemoved: [0x4ba32dee3a5c54a6668c7f508f5e61b29727f7c52351f77e7d08d38b44c0336e](https://rinkeby.etherscan.io/tx/0x4ba32dee3a5c54a6668c7f508f5e61b29727f7c52351f77e7d08d38b44c0336e)
     * ConsumerRemoved: [0x118fa604ab8f636dfdaea5cb884ce67666db945a547b36addd0986c5d70e56e5](https://rinkeby.etherscan.io/tx/0x118fa604ab8f636dfdaea5cb884ce67666db945a547b36addd0986c5d70e56e5)
 * Transfer Ownership
-    * TransferOwnership: [0xd27586539ba8df9282d4853c68e2df270bee4ff1787853a7df8faec629aeb4ca](https://rinkeby.etherscan.io/tx/0xd27586539ba8df9282d4853c68e2df270bee4ff1787853a7df8faec629aeb4ca)
-    * RenounceOwnership: [0x89ed53ba44a53d4e429fd9b5a79a63dfd49dc8eb5c307e25772623ea39432dd8](https://rinkeby.etherscan.io/tx/0x89ed53ba44a53d4e429fd9b5a79a63dfd49dc8eb5c307e25772623ea39432dd8)
+    * TransferOwnership: [0xd27586539ba8df9282d4853c68e2df270bee4ff1787853a7df8faec629aeb4ca]( https://rinkeby.etherscan.io/tx/0xd27586539ba8df9282d4853c68e2df270bee4ff1787853a7df8faec629aeb4ca)
+    * RenounceOwnership: [0x89ed53ba44a53d4e429fd9b5a79a63dfd49dc8eb5c307e25772623ea39432dd8]( https://rinkeby.etherscan.io/tx/0x89ed53ba44a53d4e429fd9b5a79a63dfd49dc8eb5c307e25772623ea39432dd8)
+
+# Modify client code to interact with a smart contract
+![](/images/Frontend.png)
+
+# Optional: Implement Infura to store product image
+![](/images/Upload.png)
