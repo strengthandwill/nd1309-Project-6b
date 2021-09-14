@@ -26,16 +26,12 @@
 * When "Read" button is clicked, DApp uses the hash to retreive the image from IPFS.
 
 ## General Write Up
-## Getting Started
-
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-
 Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
 
 ### Installing
-
 > The  code is written for **Solidity v0.4.24**. To use this code, please run `npm i -g truffle@4.1.14` to install Truffle v4 with Solidity v0.4.24. 
 
 A step by step series of examples that tell you have to get a development env running
@@ -92,10 +88,10 @@ npm run dev
 
 #### Add Access Control
 * Goto Access Control section. 
-* Add Farmer ID and click "Add" to add address to Farmer Role.
-* Add Distributor ID and click "Add" to address to Distributor Role.
-* Add Retailer ID and click "Add" to address to Retailer Role.
-* Add Consumer ID and click "Add" to address to Consumer Role.
+* Add Farmer address and click "Add" to add address to the Farmer Role.
+* Add Distributor address and click "Add" to add address to the Distributor Role.
+* Add Retailer address and click "Add" to add address to the Retailer Role.
+* Add Consumer address and click "Add" to add address to the Consumer Role.
 
 #### Supply Chain Workflow
 * Goto Product Overview section.
@@ -115,14 +111,14 @@ npm run dev
 
 #### Renounce Access Control
 * Goto Access Control section. 
-* Add Farmer ID and click "Renounce" to remove address to Farmer Role.
-* Add Distributor ID and click "Renounce" to remove to Distributor Role.
-* Add Retailer ID and click "Renounce" to remove to Retailer Role.
-* Add Consumer ID and click "Renounce" to remove to Consumer Role.
+* Add Farmer address and click "Renounce" to remove address from the Farmer Role.
+* Add Distributor address and click "Renounce" to remove address from the Distributor Role.
+* Add Retailer address and click "Renounce" to remove address from the Retailer Role.
+* Add Consumer address and click "Renounce" to remove address from the Consumer Role.
 
 #### Transfer Ownership
 * Login as Owner, add in new contract owner and click "Transfer" to transfer ownership to new contract owner.
-* Login as Owner, click "Renounce" to remove the contract owner.
+* Login as Owner, click "Renounce" to remove owner from the contract.
 
 # Write smart contracts with functions
 Refer to the source code
