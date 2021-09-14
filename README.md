@@ -78,6 +78,15 @@ All 26 tests should pass.
 
 ![truffle test](images/Tests.png)
 
+Add in configurations to `.env`
+
+```
+PROJECT_ID=<Your Project ID for Infura to use IPFS>
+PROJECT_SECRET=<Your Project Secret for Infura to use IPFS>
+INFURA_KEY=<Your Infura Key>
+MNEMONIC=<Your Mnemonic>
+```
+
 In a separate terminal window, launch the Front End:
 
 ```
