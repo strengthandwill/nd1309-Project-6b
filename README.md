@@ -34,10 +34,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
 
-```
-Give examples (to be clarified)
-```
-
 ### Installing
 
 > The  code is written for **Solidity v0.4.24**. To use this code, please run `npm i -g truffle@4.1.14` to install Truffle v4 with Solidity v0.4.24. 
@@ -86,11 +82,47 @@ All 26 tests should pass.
 
 ![truffle test](images/Tests.png)
 
-In a separate terminal window, launch the DApp:
+In a separate terminal window, launch the Front End:
 
 ```
 npm run dev
 ```
+
+### Running the Front End
+
+#### Add Access Control
+* Goto Access Control section. 
+* Add Farmer ID and click "Add" to add address to Farmer Role.
+* Add Distributor ID and click "Add" to address to Distributor Role.
+* Add Retailer ID and click "Add" to address to Retailer Role.
+* Add Consumer ID and click "Add" to address to Consumer Role.
+
+#### Supply Chain Workflow
+* Goto Product Overview section.
+* Login as Farmer, add in Product Overview, Farm Details and Product Details and click "Harvest" to mark an item "Harvested".
+* Login as Farmer, click "Process" to mark an item "Processed".
+* Login as Farmer, click "Pack" to mark an item "Packed".
+* Login as Farmer, click "ForSale" to mark an item "ForSale".
+* Login as Distributor, click "Buy" to mark an item "Sold".
+* Login as Distributor, click "Ship" to mark an item "Shipped".
+* Login as Retailer, click "Receive" to mark an item "Received".
+* Login as Consumer, click "Purchase" to mark an item "Purchase".
+
+#### Upload Product Image
+* Goto Product Image section.
+* Login as Farmer, upload image and click "Upload" to upload image to IPFS.
+* Login as Farmer, click "Read" to read file from IPFS using the hash.
+
+#### Renounce Access Control
+* Goto Access Control section. 
+* Add Farmer ID and click "Renounce" to remove address to Farmer Role.
+* Add Distributor ID and click "Renounce" to remove to Distributor Role.
+* Add Retailer ID and click "Renounce" to remove to Retailer Role.
+* Add Consumer ID and click "Renounce" to remove to Consumer Role.
+
+#### Transfer Ownership
+* Login as Owner, add in new contract owner and click "Transfer" to transfer ownership to new contract owner.
+* Login as Owner, click "Renounce" to remove the contract owner.
 
 # Write smart contracts with functions
 Refer to the source code
