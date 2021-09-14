@@ -26,7 +26,71 @@
 * When "Read" button is clicked, DApp uses the hash to retreive the image from IPFS.
 
 ## General Write Up
-* See the following section ["Deploy smart contract on a public test network (Rinkeby)"](https://github.com/strengthandwill/nd1309-Project-6b#deploy-smart-contract-on-a-public-test-network-rinkeby)
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+Please make sure you've already installed ganache-cli, Truffle and enabled MetaMask extension in your browser.
+
+```
+Give examples (to be clarified)
+```
+
+### Installing
+
+> The  code is written for **Solidity v0.4.24**. To use this code, please run `npm i -g truffle@4.1.14` to install Truffle v4 with Solidity v0.4.24. 
+
+A step by step series of examples that tell you have to get a development env running
+
+Clone this repository:
+
+```
+https://github.com/strengthandwill/nd1309-Project-6b.git
+```
+
+Install all requisite npm packages (as listed in ```package.json```):
+
+```
+npm install
+```
+
+Launch Ganache:
+
+```
+ganache-cli -m "spirit supply whale amount human item harsh scare congress discover talent hamster"
+```
+
+In a separate terminal window, Compile smart contracts:
+
+```
+truffle compile
+```
+
+This will create the smart contract artifacts in folder ```build\contracts```.
+
+Migrate smart contracts to the locally running blockchain, ganache-cli:
+
+```
+truffle migrate
+```
+
+Test smart contracts:
+
+```
+truffle test
+```
+
+All 26 tests should pass.
+
+![truffle test](images/Tests.png)
+
+In a separate terminal window, launch the DApp:
+
+```
+npm run dev
+```
 
 # Write smart contracts with functions
 Refer to the source code
